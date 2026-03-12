@@ -1,45 +1,1994 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>UCP Ethical Simulation</title>
-  <link rel="stylesheet" href="/static/style.css">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>NFL-CTE Case Study: Constructor Theory in Action</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, sans-serif;
+            background: linear-gradient(135deg, #1a472a 0%, #2d5a3d 100%);
+            min-height: 100vh;
+            padding: 20px;
+            line-height: 1.6;
+        }
+        
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            background: white;
+            border-radius: 20px;
+            box-shadow: 0 20px 60px rgba(0,0,0,0.4);
+            overflow: hidden;
+        }
+        
+        .header {
+            background: linear-gradient(135deg, #1a472a 0%, #2d5a3d 100%);
+            color: white;
+            padding: 50px 40px;
+            text-align: center;
+            position: relative;
+        }
+        
+        .header::before {
+            content: '🏈';
+            position: absolute;
+            top: 20px;
+            left: 40px;
+            font-size: 3em;
+            opacity: 0.3;
+        }
+        
+        .header h1 {
+            font-size: 2.8em;
+            margin-bottom: 15px;
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.3);
+        }
+        
+        .header p {
+            font-size: 1.3em;
+            opacity: 0.95;
+            font-weight: 300;
+        }
+        
+        .header .subtitle {
+            font-size: 1.1em;
+            margin-top: 10px;
+            font-style: italic;
+            opacity: 0.8;
+        }
+        
+        .content {
+            padding: 40px;
+        }
+        
+        .progress-bar {
+            background: #e0e0e0;
+            height: 10px;
+            border-radius: 5px;
+            margin-bottom: 30px;
+            overflow: hidden;
+        }
+        
+        .progress-fill {
+            background: linear-gradient(90deg, #1a472a 0%, #2d5a3d 100%);
+            height: 100%;
+            width: 0%;
+            transition: width 0.5s ease;
+        }
+        
+        .section {
+            display: none;
+            animation: fadeIn 0.3s ease;
+        }
+        
+        .section.active {
+            display: block;
+        }
+        
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(10px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+        
+        .section-nav {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 12px;
+            margin-bottom: 30px;
+        }
+        
+        .section-nav button {
+            padding: 14px 18px;
+            font-size: 0.95em;
+            border: 2px solid #1a472a;
+            background: white;
+            color: #1a472a;
+            border-radius: 8px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            font-weight: 600;
+            text-align: left;
+        }
+        
+        .section-nav button:hover {
+            background: #1a472a;
+            color: white;
+            transform: translateY(-2px);
+        }
+        
+        .section-nav button.active {
+            background: #1a472a;
+            color: white;
+        }
+        
+        .section-nav button.completed {
+            background: #28a745;
+            border-color: #28a745;
+            color: white;
+        }
+        
+        h2 {
+            color: #1a472a;
+            font-size: 2.2em;
+            margin-bottom: 25px;
+            border-bottom: 4px solid #1a472a;
+            padding-bottom: 15px;
+        }
+        
+        h3 {
+            color: #2d5a3d;
+            font-size: 1.6em;
+            margin: 30px 0 15px 0;
+        }
+        
+        h4 {
+            color: #444;
+            font-size: 1.3em;
+            margin: 20px 0 10px 0;
+        }
+        
+        p {
+            margin: 15px 0;
+            color: #333;
+            font-size: 1.05em;
+        }
+        
+        .concept-box {
+            background: linear-gradient(135deg, #e8f5e9 0%, #c8e6c9 100%);
+            border-left: 6px solid #2e7d32;
+            padding: 25px;
+            margin: 25px 0;
+            border-radius: 8px;
+        }
+        
+        .concept-box h3, .concept-box h4 {
+            color: #1b5e20;
+            margin-top: 0;
+        }
+        
+        .concept-box strong {
+            color: #2e7d32;
+        }
+        
+        .timeline-box {
+            background: linear-gradient(135deg, #fff3e0 0%, #ffe0b2 100%);
+            border-left: 6px solid #f57c00;
+            padding: 25px;
+            margin: 25px 0;
+            border-radius: 8px;
+        }
+        
+        .timeline-box h4 {
+            color: #e65100;
+            margin-top: 0;
+        }
+        
+        .os1-box {
+            background: linear-gradient(135deg, #ffebee 0%, #ffcdd2 100%);
+            border-left: 6px solid #c62828;
+            padding: 25px;
+            margin: 25px 0;
+            border-radius: 8px;
+        }
+        
+        .os1-box h4 {
+            color: #b71c1c;
+            margin-top: 0;
+        }
+        
+        .os2-box {
+            background: linear-gradient(135deg, #e3f2fd 0%, #bbdefb 100%);
+            border-left: 6px solid #1565c0;
+            padding: 25px;
+            margin: 25px 0;
+            border-radius: 8px;
+        }
+        
+        .os2-box h4 {
+            color: #0d47a1;
+            margin-top: 0;
+        }
+        
+        .warning-box {
+            background: linear-gradient(135deg, #fff8e1 0%, #ffecb3 100%);
+            border-left: 6px solid #f57f17;
+            padding: 25px;
+            margin: 25px 0;
+            border-radius: 8px;
+        }
+        
+        .warning-box h4 {
+            color: #f57f17;
+            margin-top: 0;
+        }
+        
+        .level-box {
+            background: white;
+            border: 3px solid #ddd;
+            padding: 20px;
+            margin: 20px 0;
+            border-radius: 8px;
+        }
+        
+        .level-box.level1 {
+            border-color: #d32f2f;
+            background: linear-gradient(135deg, #ffebee 0%, #ffcdd2 100%);
+        }
+        
+        .level-box.level2 {
+            border-color: #0288d1;
+            background: linear-gradient(135deg, #e1f5fe 0%, #b3e5fc 100%);
+        }
+        
+        .level-box.level3 {
+            border-color: #388e3c;
+            background: linear-gradient(135deg, #e8f5e9 0%, #c8e6c9 100%);
+        }
+        
+        .reflection-box {
+            background: #f8f9fa;
+            border: 3px solid #1a472a;
+            border-radius: 10px;
+            padding: 30px;
+            margin: 30px 0;
+        }
+        
+        .reflection-box h4 {
+            color: #1a472a;
+            margin-top: 0;
+            font-size: 1.4em;
+        }
+        
+        .reflection-box label {
+            display: block;
+            font-weight: bold;
+            color: #333;
+            margin: 20px 0 10px 0;
+            font-size: 1.1em;
+        }
+        
+        .reflection-box .help-text {
+            display: block;
+            font-size: 0.95em;
+            color: #666;
+            font-style: italic;
+            margin: 5px 0 10px 0;
+            line-height: 1.5;
+        }
+        
+        .reflection-box textarea {
+            width: 100%;
+            min-height: 140px;
+            padding: 15px;
+            font-size: 1em;
+            border: 2px solid #ddd;
+            border-radius: 8px;
+            font-family: inherit;
+            resize: vertical;
+        }
+        
+        .reflection-box textarea:focus {
+            outline: none;
+            border-color: #1a472a;
+            box-shadow: 0 0 0 3px rgba(26, 71, 42, 0.1);
+        }
+        
+        .stakeholder-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 20px;
+            margin: 25px 0;
+        }
+        
+        .stakeholder-card {
+            background: white;
+            border: 2px solid #ddd;
+            border-radius: 10px;
+            padding: 20px;
+            transition: all 0.3s ease;
+        }
+        
+        .stakeholder-card:hover {
+            border-color: #1a472a;
+            box-shadow: 0 5px 15px rgba(26, 71, 42, 0.2);
+            transform: translateY(-3px);
+        }
+        
+        .stakeholder-card h4 {
+            color: #1a472a;
+            margin-top: 0;
+            margin-bottom: 15px;
+        }
+        
+        .stakeholder-card .role {
+            font-weight: bold;
+            color: #2d5a3d;
+            margin-bottom: 10px;
+        }
+        
+        .stakeholder-card ul {
+            margin: 10px 0 0 20px;
+        }
+        
+        .stakeholder-card li {
+            margin: 5px 0;
+            font-size: 0.95em;
+        }
+        
+        .transformation-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 15px;
+            margin: 25px 0;
+        }
+        
+        .transformation-card {
+            background: white;
+            border: 3px solid #ddd;
+            border-radius: 10px;
+            padding: 20px;
+            text-align: center;
+            transition: all 0.3s ease;
+            cursor: pointer;
+        }
+        
+        .transformation-card.selected {
+            border-color: #1a472a;
+            background: #e8f5e9;
+            transform: scale(1.05);
+        }
+        
+        .transformation-card h4 {
+            margin: 0 0 10px 0;
+            font-size: 1.2em;
+        }
+        
+        .transformation-card.trans-a {
+            border-color: #28a745;
+        }
+        
+        .transformation-card.trans-a.selected {
+            background: #d4edda;
+            border-color: #28a745;
+        }
+        
+        .transformation-card.trans-b {
+            border-color: #ffc107;
+        }
+        
+        .transformation-card.trans-c {
+            border-color: #dc3545;
+        }
+        
+        .transformation-card.trans-d {
+            border-color: #6c757d;
+        }
+        
+        .comparison-table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 25px 0;
+        }
+        
+        .comparison-table th {
+            background: #1a472a;
+            color: white;
+            padding: 15px;
+            text-align: left;
+            font-weight: bold;
+            font-size: 1.05em;
+        }
+        
+        .comparison-table td {
+            padding: 15px;
+            border: 1px solid #ddd;
+            vertical-align: top;
+        }
+        
+        .comparison-table tr:nth-child(even) {
+            background: #f8f9fa;
+        }
+        
+        .comparison-table .reactant {
+            background: #ffebee;
+        }
+        
+        .comparison-table .constructor {
+            background: #e8f5e9;
+        }
+        
+        .interactive-box {
+            background: #f1f8f4;
+            border: 2px solid #1a472a;
+            border-radius: 10px;
+            padding: 25px;
+            margin: 25px 0;
+        }
+        
+        .interactive-box h4 {
+            color: #1a472a;
+            margin-top: 0;
+        }
+        
+        .radio-group {
+            display: flex;
+            flex-direction: column;
+            gap: 15px;
+            margin: 15px 0;
+        }
+        
+        .radio-option {
+            display: flex;
+            align-items: flex-start;
+            padding: 15px;
+            background: white;
+            border: 2px solid #ddd;
+            border-radius: 8px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+        
+        .radio-option:hover {
+            border-color: #1a472a;
+            background: #f8fdf9;
+        }
+        
+        .radio-option.selected {
+            border-color: #1a472a;
+            background: #e8f5e9;
+        }
+        
+        .radio-option input[type="radio"] {
+            margin-right: 15px;
+            margin-top: 5px;
+            width: 20px;
+            height: 20px;
+            cursor: pointer;
+        }
+        
+        .radio-option label {
+            cursor: pointer;
+            flex: 1;
+        }
+        
+        .radio-option .option-title {
+            font-weight: bold;
+            display: block;
+            margin-bottom: 5px;
+            color: #1a472a;
+        }
+        
+        .radio-option .option-desc {
+            font-size: 0.95em;
+            color: #666;
+        }
+        
+        .feedback-box {
+            padding: 20px;
+            margin: 20px 0;
+            border-radius: 8px;
+            border: 3px solid #ddd;
+            display: none;
+        }
+        
+        .feedback-box.show {
+            display: block;
+            animation: slideDown 0.3s ease;
+        }
+        
+        @keyframes slideDown {
+            from { opacity: 0; transform: translateY(-10px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+        
+        .feedback-box.correct {
+            background: #d4edda;
+            border-color: #28a745;
+        }
+        
+        .feedback-box.incorrect {
+            background: #fff3cd;
+            border-color: #ffc107;
+        }
+        
+        .feedback-box.info {
+            background: #d1ecf1;
+            border-color: #17a2b8;
+        }
+        
+        .feedback-icon {
+            font-size: 2em;
+            margin-bottom: 10px;
+        }
+        
+        .step-container {
+            background: #f8f9fa;
+            padding: 25px;
+            border-radius: 10px;
+            margin: 25px 0;
+            border: 2px solid #e0e0e0;
+        }
+        
+        .step-header {
+            background: #1a472a;
+            color: white;
+            padding: 15px 20px;
+            border-radius: 8px;
+            margin-bottom: 20px;
+            font-size: 1.3em;
+            font-weight: bold;
+        }
+        
+        .nav-buttons {
+            display: flex;
+            gap: 15px;
+            margin-top: 40px;
+            justify-content: space-between;
+        }
+        
+        button {
+            padding: 15px 35px;
+            font-size: 1.1em;
+            border: none;
+            border-radius: 8px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            font-weight: 600;
+        }
+        
+        .btn-primary {
+            background: linear-gradient(135deg, #1a472a 0%, #2d5a3d 100%);
+            color: white;
+        }
+        
+        .btn-primary:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 5px 15px rgba(26, 71, 42, 0.4);
+        }
+        
+        .btn-primary:disabled {
+            background: #ccc;
+            cursor: not-allowed;
+            transform: none;
+        }
+        
+        .btn-secondary {
+            background: #6c757d;
+            color: white;
+        }
+        
+        .btn-secondary:hover {
+            background: #5a6268;
+        }
+        
+        .btn-action {
+            background: #17a2b8;
+            color: white;
+            margin-top: 15px;
+        }
+        
+        .btn-action:hover {
+            background: #138496;
+        }
+        
+        ul {
+            margin: 15px 0 15px 25px;
+        }
+        
+        li {
+            margin: 8px 0;
+            color: #333;
+        }
+        
+        .highlight {
+            background: #fff9c4;
+            padding: 2px 6px;
+            border-radius: 3px;
+            font-weight: 600;
+        }
+        
+        .hidden {
+            display: none;
+        }
+        
+        .quote-box {
+            border-left: 4px solid #1a472a;
+            padding-left: 20px;
+            margin: 20px 0;
+            font-style: italic;
+            color: #555;
+        }
+        
+        @media (max-width: 768px) {
+            .header h1 {
+                font-size: 2em;
+            }
+            
+            .content {
+                padding: 20px;
+            }
+            
+            .section-nav {
+                grid-template-columns: 1fr;
+            }
+            
+            .stakeholder-grid,
+            .transformation-grid {
+                grid-template-columns: 1fr;
+            }
+            
+            .nav-buttons {
+                flex-direction: column;
+            }
+            
+            .nav-buttons button {
+                width: 100%;
+            }
+        }
+    </style>
 </head>
 <body>
-  <h1>UCP v2.0 Ethical Simulation</h1>
-  <section>
-    <label for="roleSelect">Role:</label>
-    <select id="roleSelect">
-      <option value="Instructor">Instructor</option>
-      <option value="Researcher">Researcher</option>
-      <option value="Practitioner">Practitioner</option>
-    </select>
-    <button id="loadPresetBtn">Load Preset</button>
-  </section>
-  <section>
-    <label for="moduleSelect">Select Module:</label>
-    <select id="moduleSelect">
-      <option value="Ethical Dilemma: Trolley Problem">Trolley Problem</option>
-      <option value="Whistleblower Simulation">Whistleblower</option>
-      <option value="Paradigm Shift and PRF Drift">PRF Shift</option>
-    </select>
-    <p id="moduleDescription"></p>
-  </section>
-  <section>
-    <h2>Agent Setup</h2>
-    <textarea id="agentInput" rows="8" cols="60">
-[
-  {"name": "Ada", "identity_kernel": "integrity", "ita_role": "engineer", "prf": "consequentialist"},
-  {"name": "Turing", "identity_kernel": "logic", "ita_role": "scientist", "prf": "deontologist"}
-]
-    </textarea><br>
-    <button id="simulateBtn">Run Simulation</button>
-  </section>
-  <section>
-    <h2>Simulation Results</h2>
-    <pre id="output"></pre>
-  </section>
-  <script src="/static/app.js"></script>
+    <div class="container">
+        <div class="header">
+            <h1>The NFL-CTE Crisis</h1>
+            <p>Constructor Theory in Action</p>
+            <div class="subtitle">How Ordinary People Transformed an Institution Through OS2 Coordination</div>
+        </div>
+        
+        <div class="content">
+            <div class="progress-bar">
+                <div class="progress-fill" id="progressFill"></div>
+            </div>
+            
+            <div class="section-nav" id="sectionNav">
+                <button onclick="goToSection(0)" class="active" id="navBtn0">📖 Introduction</button>
+                <button onclick="goToSection(1)" id="navBtn1">🔴 OS1 Failure (2005-10)</button>
+                <button onclick="goToSection(2)" id="navBtn2">🔬 Three Levels</button>
+                <button onclick="goToSection(3)" id="navBtn3">🟢 OS2 Success (2010-25)</button>
+                <button onclick="goToSection(4)" id="navBtn4">⚡ Bootstrap Authority</button>
+                <button onclick="goToSection(5)" id="navBtn5">⚙️ Reactant vs Constructor</button>
+                <button onclick="goToSection(6)" id="navBtn6">🌌 Counterfactuals</button>
+                <button onclick="goToSection(7)" id="navBtn7">✍️ Your Application</button>
+                <button onclick="goToSection(8)" id="navBtn8">🎯 Dashboard Analysis</button>
+                <button onclick="goToSection(9)" id="navBtn9">🏆 Integration</button>
+            </div>
+            
+            <!-- Section 0: Introduction -->
+            <div class="section active" id="section0">
+                <h2>The Crisis: A Real-World Test of Constructor Theory</h2>
+                
+                <p>In 2005, forensic pathologist Dr. Bennet Omalu published findings that former Pittsburgh Steelers center Mike Webster's brain showed extensive chronic traumatic encephalopathy (CTE)—a neurodegenerative disease linked to repeated head trauma.</p>
+                
+                <p>The National Football League's response? Demand retraction. Call the research "completely wrong." Apply institutional pressure to silence the findings.</p>
+                
+                <p><strong>This initiated a 20-year coordination crisis</strong> that demonstrates every concept from Chapter 7:</p>
+                
+                <div class="concept-box">
+                    <h3>🎯 What This Case Demonstrates</h3>
+                    <ul>
+                        <li><strong>OS1 Coordination Failure:</strong> NFL demanded warrant agreement ("CTE doesn't exist"). Physically impossible across different PRFs. Catastrophic failure.</li>
+                        <li><strong>OS2 Coordination Success:</strong> Network formed around shared task ("establish CTE truth, prevent future harm"). Different stakeholders, different methods, same goal. Transformative success.</li>
+                        <li><strong>The Three Levels:</strong> Medical findings (atomic), pattern recognition (meaning), network coordination (coordination level)</li>
+                        <li><strong>Bootstrap Authority:</strong> Ordinary families developed normative authority through coordination competence, not credentials</li>
+                        <li><strong>Constructor vs Reactant:</strong> NFL's monopolistic control self-destructed (reactant). Distributed network sustained impact for 20 years (constructor)</li>
+                        <li><strong>Counterfactual Thinking:</strong> Multiple possible futures. Knowledge (OS2 capacity) acted as Constructor to access best outcome</li>
+                    </ul>
+                </div>
+                
+                <div class="timeline-box">
+                    <h4>⏱️ Timeline Overview</h4>
+                    <p><strong>2005-2010: OS1 Failure Phase</strong> - NFL monopolistic control, warrant-based coordination, suppression, denial</p>
+                    <p><strong>2010-2015: OS2 Emergence</strong> - Network-goal recognition, capability-based coordination, distributed authority</p>
+                    <p><strong>2015-2025: OS2 Institutionalization</strong> - Sustained coordination, cultural transformation, international spread</p>
+                </div>
+                
+                <div class="concept-box">
+                    <h3>📚 Why This Matters for Ethics</h3>
+                    <p>This isn't a thought experiment. This is <strong>how ethical transformation actually happens</strong> at institutional scale:</p>
+                    <ul>
+                        <li>Ordinary people (families) without formal credentials became recognized ethical authorities</li>
+                        <li>Diverse stakeholders with incommensurable values coordinated successfully</li>
+                        <li>The transformation was sustainable (20 years and counting)</li>
+                        <li>The pattern transferred internationally across multiple contact sports</li>
+                        <li>Constructor Theory predicted and explained all of it</li>
+                    </ul>
+                    <p><strong>You'll learn the exact framework that made this possible—and how to apply it to your own ethical challenges.</strong></p>
+                </div>
+                
+                <div class="nav-buttons">
+                    <div></div>
+                    <button class="btn-primary" onclick="goToSection(1)">Begin Analysis →</button>
+                </div>
+            </div>
+            
+            <!-- Section 1: OS1 Failure (2005-2010) -->
+            <div class="section" id="section1">
+                <h2>Phase 1: OS1 Coordination Failure (2005-2010)</h2>
+                
+                <h3>The Monopolistic Control Strategy</h3>
+                
+                <p>The NFL's initial response followed classic <strong>Operating System 1 (OS1) logic</strong>: coordination through Belief/Reason/Observation/Agreement. The league demanded that everyone share their warrant—their foundational reason for believing CTE either did or didn't exist.</p>
+                
+                <div class="os1-box">
+                    <h4>🔴 The OS1 Demand: Warrant Agreement Required</h4>
+                    <p><strong>NFL's Position:</strong> "CTE is not a significant problem. Our research shows football is safe. Anyone claiming otherwise must be wrong."</p>
+                    <p><strong>What They Were Really Demanding:</strong> That families, scientists, lawyers, and media all adopt the NFL's warrant (football is safe) as the foundation for coordination.</p>
+                    <p><strong>Why This Failed:</strong> Warrants are incommensurable across different PRFs (Phenomenological Reference Frameworks). You cannot make a grieving family's lived experience generate the NFL's institutional protection reasoning through logic.</p>
+                </div>
+                
+                <h3>The Stakeholders and Their Incommensurable Warrants</h3>
+                
+                <div class="stakeholder-grid">
+                    <div class="stakeholder-card">
+                        <h4>NFL Leadership</h4>
+                        <div class="role">Warrant: Institutional Protection</div>
+                        <ul>
+                            <li>Protect league liability</li>
+                            <li>Maintain revenue models</li>
+                            <li>Preserve competitive practices</li>
+                            <li>Control institutional narrative</li>
+                        </ul>
+                    </div>
+                    
+                    <div class="stakeholder-card">
+                        <h4>Families</h4>
+                        <div class="role">Warrant: Care/Prevention (Care Foundation 4-5)</div>
+                        <ul>
+                            <li>Honor loved ones' suffering</li>
+                            <li>Prevent future families from same fate</li>
+                            <li>Establish truth about what happened</li>
+                            <li>Seek accountability for harm</li>
+                        </ul>
+                    </div>
+                    
+                    <div class="stakeholder-card">
+                        <h4>Scientists</h4>
+                        <div class="role">Warrant: Empirical Truth</div>
+                        <ul>
+                            <li>Establish facts through peer review</li>
+                            <li>Advance medical knowledge</li>
+                            <li>Use evidence-based methods</li>
+                            <li>Maintain research integrity</li>
+                        </ul>
+                    </div>
+                    
+                    <div class="stakeholder-card">
+                        <h4>Lawyers</h4>
+                        <div class="role">Warrant: Procedural Justice (Fairness Foundation 4-5)</div>
+                        <ul>
+                            <li>Ensure due process rights</li>
+                            <li>Hold institutions accountable</li>
+                            <li>Establish legal precedent</li>
+                            <li>Protect future claimants</li>
+                        </ul>
+                    </div>
+                </div>
+                
+                <h3>Why OS1 Was Doomed: The Physics of Incommensurability</h3>
+                
+                <div class="warning-box">
+                    <h4>⚠️ The Impossible Demand</h4>
+                    <p>The NFL was trying to force warrant convergence across fundamentally different PRFs. This is a <strong>physical impossibility</strong>, not a communication problem:</p>
+                    <ul>
+                        <li><strong>Different Assembly Histories:</strong> A family who watched their father deteriorate has different synaptic weights (different PRF) than NFL executives protecting revenue.</li>
+                        <li><strong>Incommensurable Foundations:</strong> Care-based reasoning ("suffering obligates response") and institutional-protection reasoning ("maintain organizational viability") are logically incompatible warrants.</li>
+                        <li><strong>OS1 Coordination Capacity ≈ 10-15%:</strong> You can only coordinate through warrant agreement with people who share similar PRFs. The NFL was demanding 100% agreement.</li>
+                    </ul>
+                    <p><strong>Result:</strong> The more they demanded agreement, the more coordination broke down. Classic OS1 failure pattern.</p>
+                </div>
+                
+                <div class="interactive-box">
+                    <h4>🤔 Check Your Understanding</h4>
+                    <p><strong>Question:</strong> Why couldn't the NFL's OS1 strategy work, even if they had better arguments?</p>
+                    
+                    <div class="radio-group">
+                        <div class="radio-option" onclick="selectOS1Answer(1, this)">
+                            <input type="radio" id="os1q1" name="os1question" value="1">
+                            <label for="os1q1">
+                                <span class="option-title">They needed better communication</span>
+                                <span class="option-desc">If they explained their position more clearly, families would understand</span>
+                            </label>
+                        </div>
+                        
+                        <div class="radio-option" onclick="selectOS1Answer(2, this)">
+                            <input type="radio" id="os1q2" name="os1question" value="2">
+                            <label for="os1q2">
+                                <span class="option-title">Warrants are incommensurable across different PRFs</span>
+                                <span class="option-desc">You cannot make a Care-4.5 PRF generate institutional-protection reasoning through logic. It's a physical impossibility, not a communication failure.</span>
+                            </label>
+                        </div>
+                        
+                        <div class="radio-option" onclick="selectOS1Answer(3, this)">
+                            <input type="radio" id="os1q3" name="os1question" value="3">
+                            <label for="os1q3">
+                                <span class="option-title">They didn't have enough power</span>
+                                <span class="option-desc">With more authority, they could have forced compliance</span>
+                            </label>
+                        </div>
+                    </div>
+                    
+                    <button class="btn-action" onclick="checkOS1Answer()">Check Answer</button>
+                    
+                    <div id="os1Feedback" class="feedback-box"></div>
+                </div>
+                
+                <h3>The Consequences: 2005-2010</h3>
+                
+                <div class="timeline-box">
+                    <h4>Escalating Failure Pattern</h4>
+                    <p><strong>2005-2006:</strong> NFL demands retraction of Omalu's findings. Applies institutional pressure. Scientists resist.</p>
+                    <p><strong>2006-2008:</strong> More families report similar symptoms. NFL doubles down on denial. Network-goal ("CTE truth + prevention") starts forming but is systematically excluded.</p>
+                    <p><strong>2008-2010:</strong> Media investigation begins. Legal discovery reveals NFL's internal research showed CTE risks. OS1 strategy completely collapses. NFL loses all credibility.</p>
+                    <p><strong>Outcome:</strong> By demanding warrant agreement, the NFL destroyed their own authority and made coordination impossible.</p>
+                </div>
+                
+                <div class="nav-buttons">
+                    <button class="btn-secondary" onclick="goToSection(0)">← Back</button>
+                    <button class="btn-primary" onclick="goToSection(2)">Next: Three Levels Analysis →</button>
+                </div>
+            </div>
+            
+            <!-- Section 2: Three Levels Analysis -->
+            <div class="section" id="section2">
+                <h2>The Three Levels: Where Did the Transformation Happen?</h2>
+                
+                <p>Constructor Theory distinguishes three levels of physical reality. The CTE transformation happened at different levels simultaneously—but the <strong>ethical transformation happened at Level 2 and 3</strong>, not Level 1.</p>
+                
+                <h3>Level 1: Atomic/Quantum (The Medical Facts)</h3>
+                
+                <div class="level-box level1">
+                    <h4>🔬 Level 1: Atomic/Quantum</h4>
+                    <p><strong>What's happening:</strong> Tau protein tangles accumulating in neurons. Neurodegeneration in specific brain regions (frontal lobe, temporal lobe). Cellular damage from repeated impacts. Pure biochemistry.</p>
+                    <p><strong>Causal structure:</strong> Chemical reactions, protein folding, cellular death pathways. Governed by chemistry and biology.</p>
+                    <p><strong>Free will status:</strong> N/A. Atoms don't make choices. Tau proteins don't "decide" to tangle.</p>
+                    <p><strong>Ethical status:</strong> No ethics at this level. Facts exist. Proteins accumulate. Neurons die. No "should" exists here.</p>
+                    <p><strong>Example evidence:</strong> Brain tissue slides showing tau tangles. MRI scans showing atrophy. Biochemical assays measuring protein levels.</p>
+                </div>
+                
+                <h3>Level 2: Meaning/Information (Pattern Recognition)</h3>
+                
+                <div class="level-box level2">
+                    <h4>🧠 Level 2: Meaning/Information</h4>
+                    <p><strong>What's happening:</strong> Recognition that these atomic-level changes constitute a <em>pattern</em> called "CTE." Knowledge creation about what causes it, how to diagnose it, how to prevent it.</p>
+                    <p><strong>Causal structure:</strong> Constructor capacity operating on informationally privileged patterns. Scientists recognize CTE as a disease entity. Families recognize behavioral changes as symptoms, not character flaws.</p>
+                    <p><strong>Free will status:</strong> THIS is where choice operates. Scientists choose to investigate despite institutional pressure. Families choose to donate brains for research. Pattern recognition enables counterfactual selection.</p>
+                    <p><strong>Ethical status:</strong> Ethics BEGINS here. "We COULD prevent this" (counterfactual recognition). "We SHOULD prevent this" (normative evaluation). Constructor capacity at the meaning level.</p>
+                    <p><strong>Example:</strong> Dr. Ann McKee recognizing that player brain #47 shows the same pattern as player brains #1-46. This is pattern recognition at meaning level—not visible to atoms, but informationally privileged for equipped agents.</p>
+                </div>
+                
+                <h3>Level 3: Coordination (The Network Formation)</h3>
+                
+                <div class="level-box level3">
+                    <h4>🤝 Level 3: Coordination</h4>
+                    <p><strong>What's happening:</strong> Multiple meaning-level agents (families, scientists, lawyers, media) coordinating action despite different warrants. Network-goal formation: "Establish CTE truth and prevent future harm."</p>
+                    <p><strong>Causal structure:</strong> OS1 (warrant-based, failed 2005-2010) vs OS2 (capability-based, succeeded 2010-2025). Bootstrap authority development. Collective Constructor capacity.</p>
+                    <p><strong>Free will status:</strong> Collective agency. "What futures can we make possible TOGETHER?" Network can access counterfactuals no individual can reach.</p>
+                    <p><strong>Ethical status:</strong> This is where institutional transformation happens. Not through atomic changes (Level 1) or individual choices (Level 2), but through coordination at Level 3.</p>
+                    <p><strong>Example:</strong> Family testimony enhances scientific research quality. Scientific findings strengthen legal cases. Legal discovery reveals data for journalists. Media coverage creates political pressure. Each stakeholder's capabilities enhance others' effectiveness toward shared network goal.</p>
+                </div>
+                
+                <h3>The Critical Insight: Levels Are All Real</h3>
+                
+                <div class="concept-box">
+                    <h3>🔑 Why This Matters</h3>
+                    <p><strong>Standard reductionism says:</strong> "Only Level 1 is real. Tau proteins are real. Everything else is just a useful fiction."</p>
+                    <p><strong>Constructor Theory says:</strong> "All three levels are real, with different causal structures. You CANNOT do ethics at Level 1. Ethics requires Levels 2 and 3."</p>
+                    <p><strong>The proof:</strong> The NFL tried to operate at Level 1 (deny the atomic facts). But the transformation happened at Level 2 (pattern recognition: "This IS CTE") and Level 3 (network coordination: "We can prevent this together").</p>
+                    <p><strong>Attempted shortcuts:</strong></p>
+                    <ul>
+                        <li>NFL tried Level 1 only: "The tau proteins don't prove causation." Failed because ethics doesn't exist at Level 1.</li>
+                        <li>Individual scientists tried Level 2 only: "Here's the research." Failed because institutional change requires Level 3 coordination.</li>
+                        <li>Network succeeded at Levels 2+3: Pattern recognition (CTE is real) + coordination (OS2 network around shared goal).</li>
+                    </ul>
+                </div>
+                
+                <div class="interactive-box">
+                    <h4>🎯 Application Exercise</h4>
+                    <p>The following statement appeared in NFL communications in 2009: "There is no proven connection between playing football and developing CTE."</p>
+                    <p><strong>Which level was the NFL operating at, and why did it fail?</strong></p>
+                    
+                    <div class="radio-group">
+                        <div class="radio-option" onclick="selectLevelAnswer(1, this)">
+                            <input type="radio" id="level1" name="levelquestion" value="1">
+                            <label for="level1">
+                                <span class="option-title">Level 1 (Atomic) - Demanding atomic-level proof</span>
+                                <span class="option-desc">They were demanding causal proof at the molecular level, but ethics operates at meaning and coordination levels</span>
+                            </label>
+                        </div>
+                        
+                        <div class="radio-option" onclick="selectLevelAnswer(2, this)">
+                            <input type="radio" id="level2" name="levelquestion" value="2">
+                            <label for="level2">
+                                <span class="option-title">Level 2 (Meaning) - Pattern recognition dispute</span>
+                                <span class="option-desc">They were denying the pattern recognition that CTE constitutes a disease entity</span>
+                            </label>
+                        </div>
+                        
+                        <div class="radio-option" onclick="selectLevelAnswer(3, this)">
+                            <input type="radio" id="level3" name="levelquestion" value="3">
+                            <label for="level3">
+                                <span class="option-title">Level 3 (Coordination) - Blocking network formation</span>
+                                <span class="option-desc">They were preventing coordination around the shared network goal</span>
+                            </label>
+                        </div>
+                    </div>
+                    
+                    <button class="btn-action" onclick="checkLevelAnswer()">Check Answer</button>
+                    
+                    <div id="levelFeedback" class="feedback-box"></div>
+                </div>
+                
+                <div class="nav-buttons">
+                    <button class="btn-secondary" onclick="goToSection(1)">← Back</button>
+                    <button class="btn-primary" onclick="goToSection(3)">Next: OS2 Transformation →</button>
+                </div>
+            </div>
+            
+            <!-- Section 3: OS2 Success (2010-2025) -->
+            <div class="section" id="section3">
+                <h2>Phase 2-3: OS2 Coordination Success (2010-2025)</h2>
+                
+                <h3>The Network-Goal Recognition (2010-2015)</h3>
+                
+                <p>Between 2008-2010, something remarkable happened: Different stakeholders with <strong>incommensurable warrants</strong> recognized they could coordinate around a <strong>shared network goal</strong> without requiring warrant agreement.</p>
+                
+                <div class="os2-box">
+                    <h4>🟢 The Shared Network Goal</h4>
+                    <p class="highlight" style="font-size: 1.2em; text-align: center; padding: 15px;">"Establish the truth about CTE and prevent future harm"</p>
+                    <p><strong>Why this is a genuine shared goal (not just aligned interests):</strong></p>
+                    <ul>
+                        <li><strong>All stakeholders can advance it through their distinctive approaches:</strong> Families through testimony, scientists through research, lawyers through discovery, media through investigation</li>
+                        <li><strong>It persists across changing circumstances:</strong> Still meaningful 20 years later, unlike temporary political or economic interests</li>
+                        <li><strong>It's collective, not individual:</strong> Everyone advances THE SAME objective, not separate goals that happen to align</li>
+                        <li><strong>No warrant agreement required:</strong> Families don't need to become scientists. Scientists don't need to adopt Care foundations. Each contributes through their existing capabilities.</li>
+                    </ul>
+                </div>
+                
+                <h3>Capability Equivalence: How Different Approaches Advance the Same Goal</h3>
+                
+                <p>This is the core innovation of OS2: <strong>Capability equivalence</strong> means different stakeholders achieve functionally equivalent contributions to shared network goals through distinct methodological approaches.</p>
+                
+                <div class="stakeholder-grid">
+                    <div class="stakeholder-card">
+                        <h4>Families' Capabilities</h4>
+                        <div class="role">PRF: Care 4-5</div>
+                        <p><strong>What their PRF enables:</strong></p>
+                        <ul>
+                            <li>Intimate observation of symptom progression</li>
+                            <li>Authentic emotional testimony</li>
+                            <li>Sustained memorial purpose</li>
+                            <li>Public advocacy credibility</li>
+                        </ul>
+                        <p><strong>How this advances shared goal:</strong> Experiential documentation improves research quality. Personal stories create cultural awareness. Sustained engagement ensures long-term coordination.</p>
+                    </div>
+                    
+                    <div class="stakeholder-card">
+                        <h4>Scientists' Capabilities</h4>
+                        <div class="role">PRF: Empirical reasoning</div>
+                        <p><strong>What their PRF enables:</strong></p>
+                        <ul>
+                            <li>Rigorous neuropathology research</li>
+                            <li>Peer-reviewed publication</li>
+                            <li>Statistical analysis</li>
+                            <li>Medical credibility</li>
+                        </ul>
+                        <p><strong>How this advances shared goal:</strong> Research findings validate family experiences. Scientific credibility strengthens legal cases. Evidence creates accountability pressure.</p>
+                    </div>
+                    
+                    <div class="stakeholder-card">
+                        <h4>Lawyers' Capabilities</h4>
+                        <div class="role">PRF: Fairness/Justice 4-5</div>
+                        <p><strong>What their PRF enables:</strong></p>
+                        <ul>
+                            <li>Legal discovery processes</li>
+                            <li>Procedural accountability</li>
+                            <li>Evidence preservation</li>
+                            <li>Institutional compliance mechanisms</li>
+                        </ul>
+                        <p><strong>How this advances shared goal:</strong> Discovery reveals hidden data. Legal processes ensure transparency. Settlements fund research and prevention programs.</p>
+                    </div>
+                    
+                    <div class="stakeholder-card">
+                        <h4>Media's Capabilities</h4>
+                        <div class="role">PRF: Public interest</div>
+                        <p><strong>What their PRF enables:</strong></p>
+                        <ul>
+                            <li>Investigative journalism</li>
+                            <li>Public education</li>
+                            <li>Narrative synthesis</li>
+                            <li>Cultural attention</li>
+                        </ul>
+                        <p><strong>How this advances shared goal:</strong> Investigation reveals institutional failures. Public awareness creates political pressure. Education enables prevention at youth level.</p>
+                    </div>
+                </div>
+                
+                <h3>The OS2 Coordination Structure</h3>
+                
+                <div class="concept-box">
+                    <h3>How OS2 Works Differently Than OS1</h3>
+                    <table class="comparison-table">
+                        <tr>
+                            <th>Dimension</th>
+                            <th class="reactant">OS1 (Warrant-Based)</th>
+                            <th class="constructor">OS2 (Capability-Based)</th>
+                        </tr>
+                        <tr>
+                            <td><strong>Coordination requirement</strong></td>
+                            <td>Must share same warrant (same PRF)</td>
+                            <td>Must recognize shared network goal</td>
+                        </tr>
+                        <tr>
+                            <td><strong>Capacity</strong></td>
+                            <td>~10-15% of stakeholders</td>
+                            <td>~80-90% of stakeholders</td>
+                        </tr>
+                        <tr>
+                            <td><strong>Example</strong></td>
+                            <td>NFL: "Everyone must agree CTE isn't serious"</td>
+                            <td>Network: "We all advance CTE truth + prevention through our different strengths"</td>
+                        </tr>
+                        <tr>
+                            <td><strong>Sustainability</strong></td>
+                            <td>Fragments when circumstances change</td>
+                            <td>Persists across changing contexts</td>
+                        </tr>
+                        <tr>
+                            <td><strong>Innovation</strong></td>
+                            <td>Limited to single approach</td>
+                            <td>Each approach enhances others</td>
+                        </tr>
+                        <tr>
+                            <td><strong>Authority</strong></td>
+                            <td>Top-down, credential-based</td>
+                            <td>Bootstrap through coordination competence</td>
+                        </tr>
+                    </table>
+                </div>
+                
+                <h3>The Transformation Timeline</h3>
+                
+                <div class="timeline-box">
+                    <h4>2010-2015: OS2 Network Development</h4>
+                    <p><strong>2010:</strong> Dr. Ann McKee's research shows CTE in 34 of 35 deceased NFL players. Families coordinate brain donations. Network-goal becomes explicit.</p>
+                    <p><strong>2011:</strong> Legal discovery reveals NFL's internal research showed risks. Capability coordination: lawyers find data, scientists analyze it, media publishes it, families provide context.</p>
+                    <p><strong>2012-2013:</strong> NFL begins acknowledging CTE connection. Network doesn't declare victory—shared goal (prevention) requires ongoing coordination.</p>
+                    <p><strong>2013-2015:</strong> Class action settlement ($765 million). Settlement structured around network-goal: funds research, safety protocols, monitoring, education. Not just individual compensation.</p>
+                </div>
+                
+                <div class="timeline-box">
+                    <h4>2015-2025: OS2 Institutionalization & Cultural Transformation</h4>
+                    <p><strong>2015-2017:</strong> Settlement implementation creates permanent coordination structures. Player Safety Advisory Panel integrates family experience, scientific research, legal oversight.</p>
+                    <p><strong>2017-2020:</strong> Cultural changes spread internationally: Rugby (England, Australia), Soccer (Europe), Hockey (North America), Military training (multiple countries). Same OS2 pattern: diverse stakeholders, shared network goal, capability complementarity.</p>
+                    <p><strong>2020-2025:</strong> Youth football participation drops 30% in US. Rule changes across contact sports. Ongoing research funded by settlement. Network sustained 20 years after initial crisis.</p>
+                    <p><strong>The proof OS2 works:</strong> Coordination survived leadership changes, media cycles, economic pressures, political shifts. Shared network goal remained meaningful to all stakeholders.</p>
+                </div>
+                
+                <div class="interactive-box">
+                    <h4>🎯 Understanding OS2 Coordination</h4>
+                    <p><strong>Question:</strong> What made the CTE network sustainable where other coalitions fail?</p>
+                    
+                    <div class="radio-group">
+                        <div class="radio-option" onclick="selectOS2Answer(1, this)">
+                            <input type="radio" id="os2q1" name="os2question" value="1">
+                            <label for="os2q1">
+                                <span class="option-title">Strong leadership kept everyone aligned</span>
+                                <span class="option-desc">A charismatic leader maintained coordination across 20 years</span>
+                            </label>
+                        </div>
+                        
+                        <div class="radio-option" onclick="selectOS2Answer(2, this)">
+                            <input type="radio" id="os2q2" name="os2question" value="2">
+                            <label for="os2q2">
+                                <span class="option-title">Genuine shared network goal that each group could advance equivalently</span>
+                                <span class="option-desc">"CTE truth + prevention" remained meaningful to all stakeholders regardless of changing circumstances. Each advanced it through their distinctive capabilities.</span>
+                            </label>
+                        </div>
+                        
+                        <div class="radio-option" onclick="selectOS2Answer(3, this)">
+                            <input type="radio" id="os2q3" name="os2question" value="3">
+                            <label for="os2q3">
+                                <span class="option-title">Economic incentives aligned their interests</span>
+                                <span class="option-desc">Everyone benefited financially from continued coordination</span>
+                            </label>
+                        </div>
+                    </div>
+                    
+                    <button class="btn-action" onclick="checkOS2Answer()">Check Answer</button>
+                    
+                    <div id="os2Feedback" class="feedback-box"></div>
+                </div>
+                
+                <div class="nav-buttons">
+                    <button class="btn-secondary" onclick="goToSection(2)">← Back</button>
+                    <button class="btn-primary" onclick="goToSection(4)">Next: Bootstrap Authority →</button>
+                </div>
+            </div>
+            
+            <!-- Section 4: Bootstrap Authority -->
+            <div class="section" id="section4">
+                <h2>Bootstrap Authority: How Ordinary People Gained Normative Legitimacy</h2>
+                
+                <p>This is one of the most profound lessons from the NFL-CTE case: <strong>Ethical authority doesn't require formal credentials or institutional position.</strong> It emerges through demonstrated coordination competence.</p>
+                
+                <h3>The Bootstrap Argument (From Chapter 7)</h3>
+                
+                <div class="concept-box">
+                    <h3>🔄 What "Bootstrap Authority" Means</h3>
+                    <p>Any agent capable of asking "Why should I be ethical?" has already demonstrated:</p>
+                    <ol>
+                        <li><strong>Temporal coherence:</strong> Maintains identity across time ("I now" connects to "I future")</li>
+                        <li><strong>Meta-Constructor capacity:</strong> Can examine current state and evaluate it</li>
+                        <li><strong>Identity Kernel:</strong> Has a "self" whose interests and integrity matter</li>
+                        <li><strong>Normative engagement:</strong> Can evaluate "should"—can assess whether actions align with values</li>
+                    </ol>
+                    <p><strong>These capacities ARE agency</strong>—even though they're produced through deterministic physical processes.</p>
+                    <p><strong>The bootstrap:</strong> The very act of asking ethical questions demonstrates you possess the capacities required for ethical agency.</p>
+                </div>
+                
+                <h3>How NFL Families Demonstrated These Capacities</h3>
+                
+                <div class="timeline-box">
+                    <h4>The Initial Question (2005-2006)</h4>
+                    <p class="quote-box">"Why didn't the league protect our loved ones? They knew the risks. Why wasn't this prevented?"</p>
+                    <p><strong>What this question demonstrated:</strong></p>
+                    <ul>
+                        <li><strong>Temporal coherence:</strong> Connected past (player careers), present (CTE symptoms), future (prevention for others)</li>
+                        <li><strong>Meta-Constructor capacity:</strong> Could examine the institutional structure and recognize its failure</li>
+                        <li><strong>Identity Kernel:</strong> Speaking from genuine concern for collective welfare, not individual advantage</li>
+                        <li><strong>Normative engagement:</strong> The "should" question ("Why WASN'T this prevented?") presupposes ethical evaluation</li>
+                    </ul>
+                    <p><strong>Critical insight:</strong> These are <em>accessible to anyone</em> who experiences institutional problems. No PhD required. No formal training needed. The capacities emerge from authentic engagement with genuine problems.</p>
+                </div>
+                
+                <h3>The Authority Development Process</h3>
+                
+                <div class="step-container">
+                    <div class="step-header">Phase 1: Authentic Questioning (2005-2008)</div>
+                    <p><strong>What families did:</strong> Asked genuine questions from lived experience. "Our husband/father changed. We watched his decline. The league said football was safe. Why?"</p>
+                    <p><strong>Why this mattered:</strong> Authenticity (speaking from real concern, not strategic positioning) gave their questions normative weight.</p>
+                    <p><strong>Bootstrap mechanism:</strong> The act of asking demonstrated the capacities required for ethical authority.</p>
+                </div>
+                
+                <div class="step-container">
+                    <div class="step-header">Phase 2: Sustained Coordination Competence (2008-2013)</div>
+                    <p><strong>What families did:</strong> Donated brains for research. Gave testimony. Collaborated with scientists, lawyers, journalists. Maintained focus on shared network goal across years.</p>
+                    <p><strong>Why this mattered:</strong> Each successful coordination outcome—compelling research, building coalitions, achieving policy changes—reinforced their authority.</p>
+                    <p><strong>Bootstrap mechanism:</strong> Authority grew through demonstrated competence in advancing shared network goals, not through credentials.</p>
+                </div>
+                
+                <div class="step-container">
+                    <div class="step-header">Phase 3: Recognition by Other Stakeholders (2013-2025)</div>
+                    <p><strong>What families gained:</strong> Scientists sought their input on research design. Policymakers invited them to advisory panels. Media treated them as authoritative sources.</p>
+                    <p><strong>Why this mattered:</strong> Other stakeholders recognized family authority through <em>observable contribution to shared objectives</em>, not formal position.</p>
+                    <p><strong>Bootstrap mechanism:</strong> Authority became institutionalized because it was grounded in demonstrated coordination capacity, making it stable and legitimate.</p>
+                </div>
+                
+                <h3>The Democratic Promise</h3>
+                
+                <div class="success-box">
+                    <h4>✅ Anyone Can Develop Bootstrap Authority</h4>
+                    <p><strong>The NFL families weren't special:</strong> They were ordinary people—spouses, children, parents of former players. No medical training. No legal expertise. No institutional power.</p>
+                    <p><strong>What they had:</strong></p>
+                    <ul>
+                        <li>Authentic concern for a genuine problem (CTE harm)</li>
+                        <li>Willingness to sustain engagement across years</li>
+                        <li>Capability to contribute to shared network goal (experiential documentation, advocacy)</li>
+                        <li>Openness to coordinate with others who had different approaches</li>
+                    </ul>
+                    <p><strong>The lesson:</strong> These are capacities anyone can develop. Parents concerned about children's safety, workers facing exploitation, community members experiencing environmental harm, citizens witnessing injustice—all possess the fundamental requirements for developing ethical authority through coordination competence.</p>
+                </div>
+                
+                <div class="concept-box">
+                    <h3>🔗 Connection to Free Will (The Bootstrap Argument)</h3>
+                    <p>Remember from Chapter 7: We don't have libertarian free will (Sapolsky is right about that). But we DO have agency—Constructor capacity at the meaning level.</p>
+                    <p><strong>The CTE families proved this:</strong></p>
+                    <ul>
+                        <li>Their neurons were deterministic (Level 1: atomic)</li>
+                        <li>But they recognized counterfactuals at meaning level (Level 2): "CTE COULD be prevented"</li>
+                        <li>And they coordinated to SELECT among counterfactuals (Level 3): "We WILL make prevention happen"</li>
+                    </ul>
+                    <p>This IS free will—not magic, not souls, but <strong>Constructor capacity operating at informationally privileged levels</strong>.</p>
+                    <p>The bootstrap: By asking "Why wasn't this prevented?" they demonstrated they possessed the capacities (temporal coherence, meta-Constructor ability, normative evaluation) that CONSTITUTE agency.</p>
+                </div>
+                
+                <div class="reflection-box">
+                    <h4>✍️ Personal Reflection: Your Bootstrap Potential</h4>
+                    
+                    <label for="bootstrap1">Think of an ethical problem in your life/community where you feel "something should be done" but you're not an "expert."</label>
+                    <span class="help-text">Example: Your workplace has a persistent safety issue, but you're not in management. Your neighborhood has an environmental problem, but you're not a scientist. Your school has an equity issue, but you're not an administrator.</span>
+                    <textarea id="bootstrap1"></textarea>
+                    
+                    <label for="bootstrap2">What capacities do you ALREADY have (from authentic engagement with this problem) that could ground ethical authority?</label>
+                    <span class="help-text">Consider: Do you have temporal coherence (can you connect past, present, future of this issue)? Do you have lived experience others lack? Can you ask questions from genuine concern? Can you sustain engagement over time?</span>
+                    <textarea id="bootstrap2"></textarea>
+                    
+                    <label for="bootstrap3">What would "bootstrap authority" look like for you in this situation? How would you demonstrate coordination competence?</label>
+                    <span class="help-text">Think: What question could you ask that demonstrates the capacities for ethical agency? Who else is affected? What shared network goal might exist? What capabilities could you contribute?</span>
+                    <textarea id="bootstrap3"></textarea>
+                    
+                    <button class="btn-primary" onclick="saveReflection('bootstrap')" style="margin-top: 20px;">Save Your Reflection</button>
+                </div>
+                
+                <div class="nav-buttons">
+                    <button class="btn-secondary" onclick="goToSection(3)">← Back</button>
+                    <button class="btn-primary" onclick="goToSection(5)">Next: Reactant vs Constructor →</button>
+                </div>
+            </div>
+            
+            <!-- Section 5: Constructor vs Reactant -->
+            <div class="section" id="section5">
+                <h2>Constructor vs Reactant: The Physics of Sustainable Impact</h2>
+                
+                <p>The NFL-CTE case perfectly demonstrates the difference between Reactant patterns (burning out, self-destructing) and Constructor patterns (sustainable transformation).</p>
+                
+                <h3>The Reactant Pattern: NFL's Monopolistic Control (2005-2010)</h3>
+                
+                <table class="comparison-table">
+                    <tr>
+                        <th>Criterion</th>
+                        <th>NFL Reactant Pattern</th>
+                        <th>Outcome</th>
+                    </tr>
+                    <tr class="reactant">
+                        <td><strong>Transformation approach</strong></td>
+                        <td>Demanded retraction, suppressed research, applied institutional pressure</td>
+                        <td>Caused change (temporarily silenced critics) but degraded own capacity to cause it again</td>
+                    </tr>
+                    <tr class="reactant">
+                        <td><strong>Code Integrity</strong></td>
+                        <td>Corrupted institutional credibility for short-term protection</td>
+                        <td>Lost ability to be trusted on safety issues permanently</td>
+                    </tr>
+                    <tr class="reactant">
+                        <td><strong>Energy expenditure</strong></td>
+                        <td>Massive resources on denial, litigation, PR campaigns</td>
+                        <td>Burned resources that could have funded prevention</td>
+                    </tr>
+                    <tr class="reactant">
+                        <td><strong>Coordination mode</strong></td>
+                        <td>OS1 (demanding warrant agreement)</td>
+                        <td>~10-15% coordination capacity, constant conflict</td>
+                    </tr>
+                    <tr class="reactant">
+                        <td><strong>Sustainability</strong></td>
+                        <td>Could not be maintained past 2010</td>
+                        <td>Complete collapse of strategy, forced reversal</td>
+                    </tr>
+                    <tr class="reactant">
+                        <td><strong>Constructor capacity</strong></td>
+                        <td>Destroyed capacity for future ethical action</td>
+                        <td>NFL can no longer credibly address safety issues alone</td>
+                    </tr>
+                </table>
+                
+                <div class="warning-box">
+                    <h4>⚡ The Reactant Surgeon Analogy Applied</h4>
+                    <p>Remember the Reactant Surgeon from Chapter 7? She stays awake 48 hours, burns out, makes fatal error, quits medicine.</p>
+                    <p><strong>The NFL was the institutional version:</strong> Stayed in denial mode, burned credibility, made catastrophic errors (suppressing safety research), destroyed ability to function as legitimate safety authority.</p>
+                    <p>Both optimized for <em>feeling/intensity</em> (the NFL felt threatened, responded aggressively) rather than <em>capacity/sustainability</em> (maintaining ability to address safety long-term).</p>
+                </div>
+                
+                <h3>The Constructor Pattern: Distributed Network (2010-2025)</h3>
+                
+                <table class="comparison-table">
+                    <tr>
+                        <th>Criterion</th>
+                        <th>Network Constructor Pattern</th>
+                        <th>Outcome</th>
+                    </tr>
+                    <tr class="constructor">
+                        <td><strong>Transformation approach</strong></td>
+                        <td>Each stakeholder maintained their capabilities while coordinating toward shared goal</td>
+                        <td>Caused transformation AND retained capacity to cause further transformations</td>
+                    </tr>
+                    <tr class="constructor">
+                        <td><strong>Code Integrity</strong></td>
+                        <td>Each maintained authentic engagement with their approach</td>
+                        <td>Scientists stayed scientific, families stayed focused on prevention, integrity intact</td>
+                    </tr>
+                    <tr class="constructor">
+                        <td><strong>Energy expenditure</strong></td>
+                        <td>Distributed load across complementary capabilities</td>
+                        <td>Sustainable effort, no burnout, 20-year persistence</td>
+                    </tr>
+                    <tr class="constructor">
+                        <td><strong>Coordination mode</strong></td>
+                        <td>OS2 (capability-based around shared network goal)</td>
+                        <td>~80-90% coordination capacity, synergistic enhancement</td>
+                    </tr>
+                    <tr class="constructor">
+                        <td><strong>Sustainability</strong></td>
+                        <td>Survived leadership changes, media cycles, political shifts</td>
+                        <td>Still functioning 20 years later, spread internationally</td>
+                    </tr>
+                    <tr class="constructor">
+                        <td><strong>Constructor capacity</strong></td>
+                        <td>Each success enhanced future capacity</td>
+                        <td>Network now addresses CTE in rugby, soccer, hockey, military</td>
+                    </tr>
+                </table>
+                
+                <div class="success-box">
+                    <h4>⚙️ The Constructor Surgeon Analogy Applied</h4>
+                    <p>The Constructor Surgeon sleeps, eats, uses team support, enters OR as precise instrument, saves patient, emerges ready for next one.</p>
+                    <p><strong>The network was the institutional version:</strong> Maintained Code Integrity (each stakeholder kept their authentic approach), distributed load (families didn't try to be scientists, scientists didn't try to be lawyers), emerged from each coordination success with enhanced capacity.</p>
+                    <p>Optimized for <em>capacity/sustainability</em>, not just <em>feeling/intensity</em>.</p>
+                </div>
+                
+                <h3>The Key Physics: Why Constructors Win Long-Term</h3>
+                
+                <div class="concept-box">
+                    <h3>🔬 The Thermodynamics of Coordination</h3>
+                    <p><strong>Reactants:</strong> Like chemical explosions. High energy release, immediate impact, cannot repeat. The molecules that exploded are gone.</p>
+                    <p><strong>Constructors:</strong> Like catalysts. Cause transformation, emerge unchanged, ready to catalyze again. The catalyst is preserved.</p>
+                    <p><strong>In human coordination:</strong></p>
+                    <ul>
+                        <li><strong>Reactant:</strong> NFL burned institutional capital (credibility, trust, authority) to achieve short-term protection. Capital exhausted, capacity destroyed.</li>
+                        <li><strong>Constructor:</strong> Network preserved each stakeholder's capabilities while achieving transformation. Each success enhanced future capacity (bootstrap authority, research funding, cultural awareness).</li>
+                    </ul>
+                    <p><strong>Physics predicts:</strong> Constructors outcompete Reactants over time because capacity is preserved and enhanced, not consumed.</p>
+                </div>
+                
+                <div class="reflection-box">
+                    <h4>✍️ Personal Reflection: Your Reactant vs Constructor Patterns</h4>
+                    
+                    <label for="reactant1">Describe a time you operated as a Reactant: sacrificed your wellbeing/capacity for immediate results.</label>
+                    <span class="help-text">Think: All-nighters for projects, burning out trying to help everyone, sacrificing health/relationships for work, any pattern where you consumed your capacity to achieve an outcome.</span>
+                    <textarea id="reactant1"></textarea>
+                    
+                    <label for="reactant2">What was the long-term cost to your Constructor capacity (ability to cause transformations sustainably)?</label>
+                    <span class="help-text">Consider: Did you burn out? Lose credibility? Damage relationships? Reduce future effectiveness? How long did it take to recover?</span>
+                    <textarea id="reactant2"></textarea>
+                    
+                    <label for="reactant3">How could you redesign that approach using Constructor principles? (Code Integrity + OS2 coordination)</label>
+                    <span class="help-text">Think: How could you maintain your capabilities while achieving the goal? Who could you coordinate with? What load could be distributed? How could you preserve capacity for future work?</span>
+                    <textarea id="reactant3"></textarea>
+                    
+                    <button class="btn-primary" onclick="saveReflection('reactant')" style="margin-top: 20px;">Save Your Reflection</button>
+                </div>
+                
+                <div class="nav-buttons">
+                    <button class="btn-secondary" onclick="goToSection(4)">← Back</button>
+                    <button class="btn-primary" onclick="goToSection(6)">Next: Counterfactual Space →</button>
+                </div>
+            </div>
+            
+            <!-- Section 6: Counterfactual Space -->
+            <div class="section" id="section6">
+                <h2>Counterfactual Space: What COULD Have Happened?</h2>
+                
+                <p>Constructor Theory shifts from "what will happen" (trajectory thinking) to "what COULD happen" (counterfactual thinking). The NFL-CTE case had multiple possible futures. Knowledge acted as the Constructor that determined which future became actual.</p>
+                
+                <h3>The Four Possible Transformations</h3>
+                
+                <div class="transformation-grid">
+                    <div class="transformation-card trans-a" onclick="selectTransformation('A')">
+                        <h4>Transformation A</h4>
+                        <p><strong>CTE Truth + Effective Prevention</strong></p>
+                        <p style="margin-top: 10px; font-size: 0.9em;">Research funded, safety protocols implemented, cultural change, accountability mechanisms, ongoing coordination</p>
+                        <p style="margin-top: 10px; font-weight: bold; color: #28a745;">✓ ACHIEVED (via OS2)</p>
+                    </div>
+                    
+                    <div class="transformation-card trans-b">
+                        <h4>Transformation B</h4>
+                        <p><strong>Partial Truth + Inadequate Prevention</strong></p>
+                        <p style="margin-top: 10px; font-size: 0.9em;">NFL acknowledges problem but implements minimal changes, research underfunded, limited cultural impact</p>
+                        <p style="margin-top: 10px; font-weight: bold; color: #ffc107;">Possible but insufficient</p>
+                    </div>
+                    
+                    <div class="transformation-card trans-c">
+                        <h4>Transformation C</h4>
+                        <p><strong>Continued Denial + Ongoing Harm</strong></p>
+                        <p style="margin-top: 10px; font-size: 0.9em;">NFL maintains OS1 strategy, more players harmed, public trust destroyed, eventual catastrophic collapse</p>
+                        <p style="margin-top: 10px; font-weight: bold; color: #dc3545;">Trajectory if OS1 continued</p>
+                    </div>
+                    
+                    <div class="transformation-card trans-d">
+                        <h4>Transformation D</h4>
+                        <p><strong>Legal Resolution Only + No Cultural Change</strong></p>
+                        <p style="margin-top: 10px; font-size: 0.9em;">Settlement without systemic prevention, coordination fragments after legal victory, problem persists in other sports</p>
+                        <p style="margin-top: 10px; font-weight: bold; color: #6c757d;">Common failure mode</p>
+                    </div>
+                </div>
+                
+                <h3>What Made Transformation A Physically Accessible?</h3>
+                
+                <div class="concept-box">
+                    <h3>🔑 Knowledge as Constructor</h3>
+                    <p><strong>Step 1: Recognition that transformations exist</strong></p>
+                    <p>Standard physics (trajectory thinking): "The NFL will continue denying. The past determines the future. Nothing will change."</p>
+                    <p>Constructor Theory (counterfactual thinking): "Multiple futures are possible. Which ones are forbidden by physics? Which ones just require knowledge?"</p>
+                    
+                    <p style="margin-top: 20px;"><strong>Step 2: Physics check</strong></p>
+                    <p>Are any of these transformations (A, B, C, D) forbidden by laws of physics?</p>
+                    <p><strong>Answer: No.</strong> All four are physically possible. None violate thermodynamics, biology, or chemistry.</p>
+                    
+                    <p style="margin-top: 20px;"><strong>Step 3: Knowledge gap identification</strong></p>
+                    <p>If Transformation A (best outcome) is physically possible but not happening, what knowledge is missing?</p>
+                    <p><strong>The missing CIB (Coherent Information Blueprint):</strong></p>
+                    <ul>
+                        <li>Recognition that OS1 (warrant-based coordination) will fail</li>
+                        <li>Identification of shared network goal ("CTE truth + prevention")</li>
+                        <li>Capability mapping across diverse stakeholders</li>
+                        <li>OS2 coordination protocols (capability pooling without warrant agreement)</li>
+                    </ul>
+                    
+                    <p style="margin-top: 20px;"><strong>Step 4: Knowledge acts as Constructor</strong></p>
+                    <p>Once the network acquired OS2 coordination knowledge, Transformation A became accessible. The knowledge WAS the Constructor that selected among counterfactuals.</p>
+                </div>
+                
+                <h3>The Trajectory Trap vs Constructor View</h3>
+                
+                <table class="comparison-table">
+                    <tr>
+                        <th>Perspective</th>
+                        <th>View of 2008 Situation</th>
+                        <th>Prediction</th>
+                        <th>Actual Outcome</th>
+                    </tr>
+                    <tr class="reactant">
+                        <td><strong>Trajectory Trap</strong></td>
+                        <td>"NFL has all the power. They're denying CTE. Nothing can change this. The atoms are following their path."</td>
+                        <td>Transformation C (continued denial + harm)</td>
+                        <td><strong>Wrong.</strong> Failed to recognize counterfactual space and knowledge as Constructor.</td>
+                    </tr>
+                    <tr class="constructor">
+                        <td><strong>Constructor View</strong></td>
+                        <td>"Multiple futures exist. What's possible? What knowledge would access Transformation A? OS2 coordination capacity is the missing CIB."</td>
+                        <td>Transformation A IF network develops OS2 knowledge</td>
+                        <td><strong>Correct.</strong> Recognized counterfactuals and identified Constructor (knowledge) needed to select among them.</td>
+                    </tr>
+                </table>
+                
+                <div class="warning-box">
+                    <h4>⚠️ Why This Matters: The Principle of Optimism</h4>
+                    <p><strong>From Chapter 7:</strong> "All evils are caused by insufficient knowledge at the meaning level."</p>
+                    <p><strong>Applied to NFL:</strong></p>
+                    <ul>
+                        <li>The "evil" (players dying from preventable brain disease) wasn't caused by atoms following trajectories</li>
+                        <li>It wasn't caused by "bad people" with wrong values</li>
+                        <li>It was caused by lack of OS2 coordination knowledge</li>
+                    </ul>
+                    <p><strong>Once the network acquired that knowledge, the evil became soluble.</strong></p>
+                    <p>This is profound: Problems that seem unsolvable are often just "unsolved due to knowledge gap." If it's not forbidden by physics, it's achievable with the right CIB.</p>
+                </div>
+                
+                <div class="interactive-box">
+                    <h4>🎯 Your Turn: Apply Counterfactual Thinking</h4>
+                    <p>Think of a current ethical crisis (climate change, healthcare access, tech ethics, institutional racism, etc.)</p>
+                    
+                    <label for="crisis">What crisis are you analyzing?</label>
+                    <textarea id="crisis" style="min-height: 60px;"></textarea>
+                    
+                    <p style="margin-top: 20px;"><strong>Map the counterfactual space:</strong></p>
+                    
+                    <label for="transA">Transformation A: Best possible outcome (if coordination succeeds)?</label>
+                    <textarea id="transA" style="min-height: 80px;"></textarea>
+                    
+                    <label for="transB">Transformation B: Partial success (some improvement but insufficient)?</label>
+                    <textarea id="transB" style="min-height: 80px;"></textarea>
+                    
+                    <label for="transC">Transformation C: Trajectory trap (continued harm, no change)?</label>
+                    <textarea id="transC" style="min-height: 80px;"></textarea>
+                    
+                    <label for="knowledgeGap">What knowledge (CIB) would act as Constructor to access Transformation A?</label>
+                    <span class="help-text">Think: What shared network goal could unite diverse stakeholders? What OS2 coordination capacity is missing? What capabilities exist but aren't being pooled?</span>
+                    <textarea id="knowledgeGap" style="min-height: 100px;"></textarea>
+                    
+                    <button class="btn-primary" onclick="saveReflection('counterfactual')" style="margin-top: 20px;">Save Your Analysis</button>
+                </div>
+                
+                <div class="nav-buttons">
+                    <button class="btn-secondary" onclick="goToSection(5)">← Back</button>
+                    <button class="btn-primary" onclick="goToSection(7)">Next: Your Application →</button>
+                </div>
+            </div>
+            
+            <!-- Section 7: Your Application -->
+            <div class="section" id="section7">
+                <h2>Apply the NFL-CTE Model to Your Context</h2>
+                
+                <p>You now understand how the NFL-CTE transformation happened. Time to apply this framework to an ethical challenge in YOUR life.</p>
+                
+                <div class="reflection-box">
+                    <h4>✍️ Your Ethical Challenge</h4>
+                    
+                    <label for="app1">Describe an ethical crisis in your field/community where "something should be done."</label>
+                    <span class="help-text">Be specific. Not "climate change" but "my university's fossil fuel investments." Not "healthcare access" but "uninsured patients being turned away from local ER." Real, concrete problem.</span>
+                    <textarea id="app1"></textarea>
+                    
+                    <label for="app2">Who are the stakeholders? What are their (likely incommensurable) warrants?</label>
+                    <span class="help-text">Example: University admin (fiduciary duty to maximize returns), student activists (Care 4+ for climate), faculty (research integrity), alumni (institutional reputation). List 3-5 key stakeholder groups and their likely moral foundations/warrants.</span>
+                    <textarea id="app2"></textarea>
+                    
+                    <label for="app3">Is anyone trying OS1 coordination? Why will it fail?</label>
+                    <span class="help-text">Look for demands like "They just need to understand that X is more important than Y" or "If only they cared about Z" or "We need to educate them about..." These are OS1 attempts requiring warrant convergence. They'll fail if stakeholders have different PRFs.</span>
+                    <textarea id="app3"></textarea>
+                    
+                    <label for="app4">What could the shared network goal be? (Not individual goals that happen to align, but ONE collective objective all can advance)</label>
+                    <span class="help-text">NFL example: "Establish CTE truth and prevent future harm." Not: "Get compensation" (families) + "Protect revenue" (NFL) + "Publish papers" (scientists). Look for a goal where success IS the same for everyone, even if their reasons differ.</span>
+                    <textarea id="app4"></textarea>
+                    
+                    <label for="app5">What capabilities does each stakeholder bring? How do these COMPLEMENT each other for the shared goal?</label>
+                    <span class="help-text">NFL example: Families brought experiential documentation + advocacy, scientists brought research + credibility, lawyers brought discovery + accountability, media brought investigation + public education. Map your stakeholders' distinctive capabilities.</span>
+                    <textarea id="app5"></textarea>
+                    
+                    <label for="app6">Design an OS2 coordination strategy using the NFL model:</label>
+                    <span class="help-text">How would capability pooling work? What would each stakeholder DO (using their existing strengths) to advance the shared goal? What coordination structures would be needed? Be concrete.</span>
+                    <textarea id="app6"></textarea>
+                    
+                    <label for="app7">How would YOU develop bootstrap authority in this situation? What question could you ask that demonstrates ethical agency?</label>
+                    <span class="help-text">NFL families asked: "Why wasn't this prevented?" This demonstrated temporal coherence, meta-Constructor capacity, normative evaluation. What's YOUR version of that question for your crisis?</span>
+                    <textarea id="app7"></textarea>
+                    
+                    <label for="app8">What would Constructor vs Reactant patterns look like in your case?</label>
+                    <span class="help-text">Reactant: Burning out, sacrificing credibility, unsustainable intensity. Constructor: Preserving capacity, distributing load, sustainable coordination. How would you design for Constructor sustainability?</span>
+                    <textarea id="app8"></textarea>
+                    
+                    <button class="btn-primary" onclick="saveReflection('application')" style="margin-top: 20px;">Save Your Application Strategy</button>
+                </div>
+                
+                <div class="nav-buttons">
+                    <button class="btn-secondary" onclick="goToSection(6)">← Back</button>
+                    <button class="btn-primary" onclick="goToSection(8)">Next: Dashboard Tool →</button>
+                </div>
+            </div>
+            
+            <!-- Section 8: Dashboard Analysis -->
+            <div class="section" id="section8">
+                <h2>Constructor's Dashboard: Applied to NFL-CTE Case</h2>
+                
+                <p>Let's walk through the Constructor's Dashboard (from Chapter 7) using the actual NFL-CTE network decisions.</p>
+                
+                <div class="step-container">
+                    <div class="step-header">Step 0: OS1 vs OS2 Coordination Check</div>
+                    <p><strong>Question for NFL (2005):</strong> "Should we require everyone to agree CTE isn't serious?"</p>
+                    <p><strong>Analysis:</strong></p>
+                    <p>⚠️ OS1 TRAP DETECTED. This requires warrant agreement across stakeholders with fundamentally different PRFs:</p>
+                    <ul>
+                        <li>Families with Care-4+ foundation: "Suffering obligates response"</li>
+                        <li>NFL leadership: "Institutional protection obligates denial"</li>
+                        <li>Scientists: "Evidence obligates truth-telling"</li>
+                    </ul>
+                    <p><strong>Physics check:</strong> These warrants are INCOMMENSURABLE. You cannot make one generate another through logic. OS1 coordination capacity ≈ 10-15%. Will fail.</p>
+                    
+                    <p style="margin-top: 20px;"><strong>Question for Network (2010):</strong> "Can we coordinate without warrant agreement?"</strong></p>
+                    <p><strong>Analysis:</strong></p>
+                    <p>✅ OS2 PATH IDENTIFIED. Shared network goal: "Establish CTE truth and prevent future harm."</p>
+                    <ul>
+                        <li>All stakeholders can advance this through their distinctive capabilities</li>
+                        <li>No warrant agreement required—families don't need to become scientists, scientists don't need to adopt Care foundations</li>
+                        <li>OS2 coordination capacity ≈ 80-90%</li>
+                    </ul>
+                </div>
+                
+                <div class="step-container">
+                    <div class="step-header">Step 1: Define the Transformation</div>
+                    <p><strong>NFL's vague version (2005):</strong> "Protect the league" (entropy—no clear target, just defensive posture)</p>
+                    <p><strong>Network's specific version (2010):</strong> "Establish definitive scientific evidence for CTE, implement comprehensive prevention protocols across contact sports, create ongoing research funding, achieve cultural transformation in how brain injury is understood"</p>
+                    <p><strong>Specificity matters:</strong> The network version is a target, not entropy. Measurable outcomes. Clear success criteria.</p>
+                </div>
+                
+                <div class="step-container">
+                    <div class="step-header">Step 2: Physics Check</div>
+                    <p><strong>Question:</strong> Is this transformation possible, or does it violate laws of physics?</p>
+                    <p><strong>Analysis:</strong></p>
+                    <p>✅ PHYSICALLY POSSIBLE. Creating research programs, implementing safety protocols, changing cultural norms—none of these violate thermodynamics, chemistry, or biology. They just require knowledge and coordination.</p>
+                    <p><strong>Principle of Optimism applies:</strong> If not forbidden by physics at Level 1 (atomic), then soluble through knowledge at Level 2 (meaning).</p>
+                </div>
+                
+                <div class="step-container">
+                    <div class="step-header">Step 3: Constructor Capacity / Knowledge Check</div>
+                    <p><strong>Question:</strong> Do we have the capabilities needed, or do we need OS2 coordination?</p>
+                    <p><strong>Analysis of individual stakeholders:</strong></p>
+                    <ul>
+                        <li><strong>Families alone:</strong> Have experiential knowledge, advocacy capacity. Missing: Scientific credibility, legal mechanisms, research infrastructure.</li>
+                        <li><strong>Scientists alone:</strong> Have research capacity, peer review credibility. Missing: Patient data access, funding, cultural influence.</li>
+                        <li><strong>Lawyers alone:</strong> Have discovery mechanisms, accountability tools. Missing: Medical expertise, public support.</li>
+                        <li><strong>NFL alone:</strong> Has resources, institutional control. Missing: Trust, legitimacy, genuine safety expertise after denial.</li>
+                    </ul>
+                    <p><strong>OS2 Solution:</strong> Pool complementary capabilities. Each stakeholder brings what their PRF enables. No individual has sufficient capacity alone. Coordination IS the Constructor.</p>
+                </div>
+                
+                <div class="step-container">
+                    <div class="step-header">Step 4: Reactant vs Constructor Check</div>
+                    <p><strong>NFL's approach (Reactant):</strong> Will burn institutional capital (credibility, trust, legitimacy) for short-term denial. Unsustainable. Will destroy future capacity to address safety issues.</p>
+                    <p><strong>Network's approach (Constructor):</strong> Each stakeholder maintains their capabilities while coordinating. Distributed load (no single point of burnout). Sustainable over decades. Each success enhances future capacity.</p>
+                    <p><strong>Result:</strong> Reactant pattern collapsed by 2010. Constructor pattern still functioning in 2025.</p>
+                </div>
+                
+                <div class="concept-box">
+                    <h3>🎯 The Complete Dashboard View</h3>
+                    <table class="comparison-table">
+                        <tr>
+                            <th>Dashboard Step</th>
+                            <th>NFL (Failed)</th>
+                            <th>Network (Succeeded)</th>
+                        </tr>
+                        <tr>
+                            <td><strong>Step 0: Coordination</strong></td>
+                            <td class="reactant">OS1 (warrant agreement required) → 10-15% capacity</td>
+                            <td class="constructor">OS2 (capability pooling) → 80-90% capacity</td>
+                        </tr>
+                        <tr>
+                            <td><strong>Step 1: Task</strong></td>
+                            <td class="reactant">Vague ("protect league")</td>
+                            <td class="constructor">Specific ("CTE truth + prevention")</td>
+                        </tr>
+                        <tr>
+                            <td><strong>Step 2: Physics</strong></td>
+                            <td class="reactant">Tried to deny physical facts</td>
+                            <td class="constructor">Recognized facts, focused on counterfactuals</td>
+                        </tr>
+                        <tr>
+                            <td><strong>Step 3: Knowledge</strong></td>
+                            <td class="reactant">Lacked OS2 coordination capacity</td>
+                            <td class="constructor">Developed OS2 as the missing CIB</td>
+                        </tr>
+                        <tr>
+                            <td><strong>Step 4: Cost</strong></td>
+                            <td class="reactant">Burned capacity, self-destructed</td>
+                            <td class="constructor">Preserved capacity, sustained 20 years</td>
+                        </tr>
+                    </table>
+                </div>
+                
+                <div class="nav-buttons">
+                    <button class="btn-secondary" onclick="goToSection(7)">← Back</button>
+                    <button class="btn-primary" onclick="goToSection(9)">Next: Integration →</button>
+                </div>
+            </div>
+            
+            <!-- Section 9: Integration -->
+            <div class="section" id="section9">
+                <h2>Integration: What the NFL-CTE Case Teaches Us</h2>
+                
+                <h3>Every Chapter 7 Concept Demonstrated</h3>
+                
+                <div class="concept-box">
+                    <h3>✅ Complete Concept Map</h3>
+                    
+                    <h4>1. The Trajectory Trap → Counterfactual Thinking</h4>
+                    <p><strong>Trap:</strong> "NFL will keep denying. Past determines future. Nothing can change."</p>
+                    <p><strong>Escape:</strong> "Multiple futures possible. What knowledge would access best outcome? OS2 coordination."</p>
+                    
+                    <h4 style="margin-top: 20px;">2. The Three Levels</h4>
+                    <p><strong>Level 1 (Atomic):</strong> Tau proteins, neurodegeneration, cellular damage</p>
+                    <p><strong>Level 2 (Meaning):</strong> Pattern recognition (CTE as disease entity), knowledge creation</p>
+                    <p><strong>Level 3 (Coordination):</strong> OS1 failed, OS2 succeeded. Transformation happened HERE.</p>
+                    
+                    <h4 style="margin-top: 20px;">3. Counterfactuals / Possibility Space</h4>
+                    <p>Four possible futures (A, B, C, D). Knowledge (OS2 capacity) acted as Constructor to select Transformation A.</p>
+                    
+                    <h4 style="margin-top: 20px;">4. Constructor vs Reactant</h4>
+                    <p><strong>Reactant:</strong> NFL burned institutional capital, self-destructed</p>
+                    <p><strong>Constructor:</strong> Network preserved capacity, sustained 20 years</p>
+                    
+                    <h4 style="margin-top: 20px;">5. OS1 vs OS2</h4>
+                    <p><strong>OS1:</strong> Warrant-based coordination, 10-15% capacity, failed 2005-2010</p>
+                    <p><strong>OS2:</strong> Capability-based coordination, 80-90% capacity, succeeded 2010-2025</p>
+                    
+                    <h4 style="margin-top: 20px;">6. Bootstrap Authority</h4>
+                    <p>Ordinary families developed ethical authority through coordination competence, not credentials. Demonstrated the capacities (temporal coherence, meta-Constructor ability, normative evaluation) that CONSTITUTE agency.</p>
+                    
+                    <h4 style="margin-top: 20px;">7. The Principle of Optimism</h4>
+                    <p>"All evils caused by insufficient knowledge at meaning level." The CTE harm wasn't caused by atoms or bad people—it was caused by lack of OS2 coordination knowledge. Once acquired, the problem became soluble.</p>
+                    
+                    <h4 style="margin-top: 20px;">8. Free Will = Constructor Capacity at Meaning Level</h4>
+                    <p>Families' neurons were deterministic (Level 1). But they recognized counterfactuals (Level 2) and coordinated to select among them (Level 3). THIS is free will—not magic, but Constructor capacity at informationally privileged levels.</p>
+                </div>
+                
+                <h3>The Transferability Proof</h3>
+                
+                <div class="timeline-box">
+                    <h4>🌍 International OS2 Coordination (2015-2025)</h4>
+                    <p>The SAME pattern emerged across multiple contact sports and countries:</p>
+                    <ul>
+                        <li><strong>Rugby (England, Australia, NZ):</strong> Network-goal = "player welfare and sport integrity"</li>
+                        <li><strong>Soccer (Europe, Latin America):</strong> Network-goal = "concussion protocol and youth protection"</li>
+                        <li><strong>Hockey (North America, Europe):</strong> Network-goal = "brain injury prevention and competitive safety"</li>
+                        <li><strong>Military training (multiple countries):</strong> Network-goal = "training effectiveness and service member protection"</li>
+                    </ul>
+                    <p><strong>Why this matters:</strong> The framework isn't culture-specific or context-specific. OS2 coordination works because it's grounded in physics (thermodynamics of sustainable coordination), not social conventions.</p>
+                </div>
+                
+                <h3>Your Takeaway: This Is How Ethical Transformation Actually Happens</h3>
+                
+                <div class="success-box">
+                    <h4>🏆 The Democratic Promise</h4>
+                    <p><strong>You don't need:</strong></p>
+                    <ul>
+                        <li>A PhD in philosophy to develop ethical authority</li>
+                        <li>Institutional power to create transformation</li>
+                        <li>Everyone to share your values to coordinate effectively</li>
+                        <li>Perfect knowledge to start acting</li>
+                    </ul>
+                    <p style="margin-top: 15px;"><strong>You DO need:</strong></p>
+                    <ul>
+                        <li>Authentic engagement with a genuine problem</li>
+                        <li>Recognition of shared network goals (not just aligned interests)</li>
+                        <li>Willingness to coordinate through capability complementarity (OS2)</li>
+                        <li>Constructor thinking (sustainable, not reactant)</li>
+                        <li>Understanding that agency bootstraps from asking the right questions</li>
+                    </ul>
+                    <p style="margin-top: 15px;"><strong>The NFL families proved this.</strong> They were ordinary people who became recognized ethical authorities through demonstrated coordination competence. The framework is accessible. The tools are available. The only question is: Will you use them?</p>
+                </div>
+                
+                <h3>Final Integration Question</h3>
+                
+                <div class="reflection-box">
+                    <h4>✍️ Synthesis: Your Commitment</h4>
+                    
+                    <label for="final1">What's ONE ethical challenge in your life where you could apply the NFL-CTE model?</label>
+                    <textarea id="final1"></textarea>
+                    
+                    <label for="final2">What's the first step you'll take this week to develop OS2 coordination around a shared network goal?</label>
+                    <span class="help-text">Be concrete. Not "think about it" but "talk to X about shared goal Y" or "map stakeholder capabilities for Z" or "ask the bootstrap question in W meeting."</span>
+                    <textarea id="final2"></textarea>
+                    
+                    <label for="final3">How will you know if you're operating as Constructor (sustainable) vs Reactant (burning out)?</label>
+                    <span class="help-text">What are your early warning signs? What coordination structures would preserve your capacity? Who could share the load?</span>
+                    <textarea id="final3"></textarea>
+                    
+                    <button class="btn-primary" onclick="saveReflection('final')" style="margin-top: 20px;">Save Your Commitment</button>
+                </div>
+                
+                <div class="concept-box" style="margin-top: 40px;">
+                    <h3>🎓 Course Integration</h3>
+                    <p>This case study demonstrates that Constructor Theory isn't just abstract physics—it's the framework for understanding how institutional ethical transformation actually happens.</p>
+                    <p><strong>Connect to other chapters:</strong></p>
+                    <ul>
+                        <li><strong>Chapter 1-2 (PRF, Identity Kernel):</strong> Families' Care-4+ PRF enabled capabilities (advocacy, sustained engagement) that institutional PRFs couldn't replicate.</li>
+                        <li><strong>Chapter 3-4 (Moral Foundations):</strong> Warrant incommensurability across foundations (Care vs Fairness vs Authority vs Sanctity) made OS1 impossible, OS2 necessary.</li>
+                        <li><strong>Chapter 5-6 (BROA+, BioBonds):</strong> Network coordination IS a BioBond at institutional scale—distributed support preventing individual burnout.</li>
+                        <li><strong>Chapter 7 (Constructor Theory):</strong> Everything. This case IS Constructor Theory applied.</li>
+                    </ul>
+                    <p><strong>The framework is complete. The tools are available. The question is: Will you use them?</strong></p>
+                </div>
+                
+                <div class="nav-buttons">
+                    <button class="btn-secondary" onclick="goToSection(8)">← Back</button>
+                    <button class="btn-primary" onclick="goToSection(0)">Return to Start</button>
+                </div>
+            </div>
+        </div>
+    </div>
+    
+    <script>
+        // State management
+        let currentSection = 0;
+        let completedSections = new Set();
+        let reflections = {};
+        
+        // Navigation
+        function goToSection(sectionNum) {
+            // Hide all sections
+            document.querySelectorAll('.section').forEach(s => s.classList.remove('active'));
+            document.querySelectorAll('.section-nav button').forEach(b => b.classList.remove('active'));
+            
+            // Mark current section as completed
+            if (currentSection < sectionNum) {
+                completedSections.add(currentSection);
+                updateNavButtons();
+            }
+            
+            // Show selected section
+            document.getElementById('section' + sectionNum).classList.add('active');
+            document.getElementById('navBtn' + sectionNum).classList.add('active');
+            
+            // Update progress
+            currentSection = sectionNum;
+            updateProgress();
+            
+            // Scroll to top
+            window.scrollTo({ top: 0, behavior: 'smooth' });
+        }
+        
+        function updateProgress() {
+            const progress = (currentSection / 9) * 100;
+            document.getElementById('progressFill').style.width = progress + '%';
+        }
+        
+        function updateNavButtons() {
+            completedSections.forEach(sec => {
+                const btn = document.getElementById('navBtn' + sec);
+                if (btn && !btn.classList.contains('active')) {
+                    btn.classList.add('completed');
+                }
+            });
+        }
+        
+        // Interactive Question Handlers
+        let selectedOS1 = null;
+        function selectOS1Answer(answer, element) {
+            selectedOS1 = answer;
+            document.querySelectorAll('#section1 .radio-option').forEach(opt => {
+                opt.classList.remove('selected');
+            });
+            element.classList.add('selected');
+        }
+        
+        function checkOS1Answer() {
+            if (!selectedOS1) {
+                alert('Please select an answer first');
+                return;
+            }
+            
+            const feedback = document.getElementById('os1Feedback');
+            if (selectedOS1 === 2) {
+                feedback.className = 'feedback-box correct show';
+                feedback.innerHTML = `
+                    <div class="feedback-icon">✅</div>
+                    <p><strong>Correct!</strong></p>
+                    <p>Warrants are incommensurable across different PRFs (Phenomenological Reference Frameworks). The NFL executives' institutional-protection warrant and the families' Care-based warrant are encoded in different synaptic weight patterns built over decades of different experiences.</p>
+                    <p>You cannot make one generate the other through logic or communication. It's a physical impossibility, not a communication failure. This is why OS1 coordination (requiring warrant agreement) has only ~10-15% capacity.</p>
+                    <p><strong>The lesson:</strong> When you see someone demanding warrant agreement across fundamentally different values/experiences, you're watching an OS1 trap that will fail predictably.</p>
+                `;
+            } else {
+                feedback.className = 'feedback-box incorrect show';
+                feedback.innerHTML = `
+                    <div class="feedback-icon">⚠️</div>
+                    <p><strong>Not quite.</strong></p>
+                    <p>The problem wasn't communication or power. It was that <strong>warrants are incommensurable</strong> across different PRFs.</p>
+                    <p>The families' Care-4.5 PRF (built from watching loved ones suffer) creates fundamentally different interpretive patterns than NFL executives' institutional-protection PRF (built from decades of corporate risk management).</p>
+                    <p>These are encoded in different synaptic weights. No amount of explanation or power can make one PRF generate the reasoning of another. It's physics, not persuasion.</p>
+                    <p><strong>Try again:</strong> Which answer recognizes this as a physical constraint, not a fixable communication problem?</p>
+                `;
+            }
+        }
+        
+        let selectedLevel = null;
+        function selectLevelAnswer(answer, element) {
+            selectedLevel = answer;
+            document.querySelectorAll('#section2 .radio-option').forEach(opt => {
+                opt.classList.remove('selected');
+            });
+            element.classList.add('selected');
+        }
+        
+        function checkLevelAnswer() {
+            if (!selectedLevel) {
+                alert('Please select an answer first');
+                return;
+            }
+            
+            const feedback = document.getElementById('levelFeedback');
+            if (selectedLevel === 1) {
+                feedback.className = 'feedback-box correct show';
+                feedback.innerHTML = `
+                    <div class="feedback-icon">✅</div>
+                    <p><strong>Correct!</strong></p>
+                    <p>The NFL was operating at Level 1 (demanding atomic-level proof of causation), but ethics operates at Level 2 (meaning/pattern recognition) and Level 3 (coordination).</p>
+                    <p>You CANNOT do ethics at the atomic level. Tau proteins don't have moral status. Atoms don't make choices.</p>
+                    <p><strong>The transformation happened when stakeholders:</strong></p>
+                    <ul>
+                        <li>Recognized the pattern "CTE" at Level 2 (meaning)</li>
+                        <li>Coordinated around shared goal at Level 3 (OS2 network)</li>
+                    </ul>
+                    <p>The NFL's mistake was treating an ethical problem (Level 2/3) as if it could be solved at Level 1 (atomic).</p>
+                `;
+            } else {
+                feedback.className = 'feedback-box incorrect show';
+                feedback.innerHTML = `
+                    <div class="feedback-icon">⚠️</div>
+                    <p><strong>Partially correct, but missing the key insight.</strong></p>
+                    <p>The NFL was indeed denying pattern recognition (Level 2) and blocking coordination (Level 3). But the deeper problem was that they were trying to fight an ethical battle at Level 1 (atomic).</p>
+                    <p>By demanding molecular-level proof, they were treating ethics as if it happens at the atomic level. But ethics REQUIRES Level 2 (meaning—pattern recognition, counterfactual thinking) and Level 3 (coordination among agents).</p>
+                    <p><strong>The lesson:</strong> You can't win an ethical argument by retreating to Level 1. Ethics doesn't exist there. It emerges at Levels 2 and 3.</p>
+                `;
+            }
+        }
+        
+        let selectedOS2 = null;
+        function selectOS2Answer(answer, element) {
+            selectedOS2 = answer;
+            document.querySelectorAll('#section3 .radio-option').forEach(opt => {
+                opt.classList.remove('selected');
+            });
+            element.classList.add('selected');
+        }
+        
+        function checkOS2Answer() {
+            if (!selectedOS2) {
+                alert('Please select an answer first');
+                return;
+            }
+            
+            const feedback = document.getElementById('os2Feedback');
+            if (selectedOS2 === 2) {
+                feedback.className = 'feedback-box correct show';
+                feedback.innerHTML = `
+                    <div class="feedback-icon">✅</div>
+                    <p><strong>Exactly right!</strong></p>
+                    <p>The network sustained because "CTE truth + prevention" remained a genuine shared objective that all stakeholders could advance through their distinctive approaches, regardless of changing external circumstances.</p>
+                    <p><strong>Why this is different from aligned interests:</strong></p>
+                    <ul>
+                        <li>Media attention came and went → network persisted</li>
+                        <li>Legal settlement was reached → network continued (not just compensation goal)</li>
+                        <li>Leadership changed → network sustained (not personality-dependent)</li>
+                        <li>Economic pressures varied → network adapted (not economically driven)</li>
+                    </ul>
+                    <p>This is the OS2 signature: Coordination survives changes because the shared network goal remains meaningful to all participants.</p>
+                    <p><strong>Compare to environmental coalitions that fragment when economics change, or policy alliances that dissolve after elections. Those are aligned interests, not shared network goals.</strong></p>
+                `;
+            } else {
+                feedback.className = 'feedback-box incorrect show';
+                feedback.innerHTML = `
+                    <div class="feedback-icon">⚠️</div>
+                    <p><strong>This is a common misunderstanding.</strong></p>
+                    <p>Strong leadership and economic incentives can create TEMPORARY alignment, but they don't sustain coordination across 20 years through leadership changes, media cycles, and economic shifts.</p>
+                    <p>The CTE network sustained because of a <strong>genuine shared network goal</strong> that all stakeholders could advance through their distinctive capabilities:</p>
+                    <ul>
+                        <li>Families advanced it through advocacy and experiential documentation</li>
+                        <li>Scientists advanced it through research and peer review</li>
+                        <li>Lawyers advanced it through discovery and accountability</li>
+                        <li>Media advanced it through investigation and education</li>
+                    </ul>
+                    <p>Each group's success enhanced the others' effectiveness. No single leader. No economic driver. Just complementary capabilities coordinating around ONE collective objective that remained meaningful across changing circumstances.</p>
+                `;
+            }
+        }
+        
+        // Transformation selection
+        let selectedTrans = null;
+        function selectTransformation(trans) {
+            selectedTrans = trans;
+            document.querySelectorAll('.transformation-card').forEach(card => {
+                card.classList.remove('selected');
+            });
+            event.currentTarget.classList.add('selected');
+        }
+        
+        // Reflection saving
+        function saveReflection(section) {
+            const inputs = document.querySelectorAll(`#section${getSectionNum(section)} textarea`);
+            reflections[section] = {};
+            inputs.forEach(input => {
+                reflections[section][input.id] = input.value;
+            });
+            alert('Reflection saved! You can continue through the case study.');
+        }
+        
+        function getSectionNum(section) {
+            const map = {
+                'bootstrap': 4,
+                'reactant': 5,
+                'counterfactual': 6,
+                'application': 7,
+                'final': 9
+            };
+            return map[section] || 0;
+        }
+        
+        // Initialize
+        updateProgress();
+    </script>
 </body>
 </html>
